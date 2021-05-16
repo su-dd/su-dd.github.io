@@ -27,10 +27,10 @@ const questions = [
     name: 'create_at',
     message: '请输入文章的发布时间（或者按回车键使用默认值）：',
     default: () => {
-      return moment().format('YYYY-MM-DDThh:mm:ss');
+      return moment().format('YYYY-MM-DDThh_mm_ss');
     },
     validate: value => {
-      if (/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d/gi.test(value)) {
+      if (/\d{4}-\d\d-\d\dT\d\d_\d\d_\d\d/gi.test(value)) {
         return true;
       }
 
@@ -48,6 +48,7 @@ inquirer
     if (fs.existsSync(path.resolve(postDirName))) {
       console.log('文章已存在，请直接编辑！');
     } else {
+	   console.log(path.resolve(postDirName));
       // 创建文章目录
       fs.mkdirSync(path.resolve(postDirName));
       // 写入md
